@@ -1,8 +1,8 @@
 {
   "name": "node-association",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a frame work of popular npm modules for building mongo express based application",
-  "main": "index.js",
+  "main": "dist/index.js",
   "types": "types/index.d.ts",
   "scripts": {
     "test": "gulp package && mocha --recursive --exit",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/vickenstein/node-association.git"
   },
-  "author": "",
+  "author": "Victor Zeng",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vickenstein/node-association/issues"
