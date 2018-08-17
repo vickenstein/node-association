@@ -59,15 +59,19 @@ class ClassFinder {
         return Controller;
     }
     static classFor(name, classType) {
+        if (!this._classFor)
+            this._classFor = {};
+        if (this._classFor[name + classType])
+            return this._classFor[name + classType];
         const requiredClass = this.classForRequire(name, classType);
         if (typeof requiredClass === 'function')
-            return requiredClass;
+            return (this._classFor[name + classType] = requiredClass);
         if (requiredClass[name + classType])
-            return requiredClass[name + classType];
+            return (this._classFor[name + classType] = requiredClass[name + classType]);
         if (requiredClass[name])
-            return requiredClass[name];
+            return (this._classFor[name + classType] = requiredClass[name]);
         if (requiredClass.default)
-            return requiredClass.default;
+            return (this._classFor[name + classType] = requiredClass.default);
     }
 }
 exports.ClassFinder = ClassFinder;

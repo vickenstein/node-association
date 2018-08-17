@@ -4,6 +4,7 @@ export declare class ClassLocationError extends ExtendableError {
 }
 export declare class ClassFinder {
     static _classLocation: any;
+    static _classFor: any;
     static readonly localPath: string;
     static readonly searchPath: string[];
     static classLocation(classType: string): any;

@@ -18,6 +18,7 @@ export class ClassLocationError extends ExtendableError {
 export class ClassFinder {
 
   static _classLocation: any
+  static _classFor: any
 
   static get localPath() {
     return localPath
@@ -64,12 +65,13 @@ export class ClassFinder {
   }
 
   static classFor(name: string, classType: string) {
+    if (!this._classFor) this._classFor = {}
+    if (this._classFor[name + classType]) return this._classFor[name + classType]
 
     const requiredClass = this.classForRequire(name, classType)
-    if (typeof requiredClass === 'function') return requiredClass
-    if (requiredClass[name + classType]) return requiredClass[name + classType]
-    if (requiredClass[name]) return requiredClass[name]
-    if (requiredClass.default) return requiredClass.default
-
+    if (typeof requiredClass === 'function') return (this._classFor[name + classType] = requiredClass)
+    if (requiredClass[name + classType]) return (this._classFor[name + classType] = requiredClass[name + classType])
+    if (requiredClass[name]) return (this._classFor[name + classType] = requiredClass[name])
+    if (requiredClass.default) return (this._classFor[name + classType] = requiredClass.default)
   }
 }
