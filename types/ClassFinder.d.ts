@@ -10,6 +10,7 @@ export declare class ClassFinder {
     static classLocation(classType: string): any;
     static resolveClassLocation(classType: string): never;
     static classForRequire(name: string, classType: string): any;
+    static removeNamespace(name: string): string;
     static classFor(name: string, classType: string): any;
 }
 //# sourceMappingURL=ClassFinder.d.ts.map

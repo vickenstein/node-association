@@ -23,6 +23,10 @@ describe("ClassFinder", () => {
       const path = ClassFinder.classLocation('Life')
       assert.strictEqual(path, `${__dirname}/dist/lives`)
     })
+    it("finds the path for namespaces", async () => {
+      const path = ClassFinder.classLocation('Namespace')
+      assert.strictEqual(path, `${__dirname}/namespaces`)
+    })
     it("errors finding no existent type Death", async () => {
       try {
         const path = ClassFinder.classLocation('Death')
@@ -79,6 +83,18 @@ describe("ClassFinder", () => {
     })
     it("find the path for class Random Plan", () => {
       const Class = ClassFinder.classForRequire('Random', 'Life')
+      assert.isOk(Class)
+    })
+    it("find the path for class More Plan", () => {
+      const Class = ClassFinder.classForRequire('Namespace:More', 'Namespace')
+      assert.isOk(Class)
+    })
+    it("find the path for class Nested Plan", () => {
+      const Class = ClassFinder.classForRequire('Namespace:Nested', 'Namespace')
+      assert.isOk(Class)
+    })
+    it("find the path for class Random Plan", () => {
+      const Class = ClassFinder.classForRequire('Namespace:Random', 'Namespace')
       assert.isOk(Class)
     })
     it("find the path for class Random Plan", () => {
@@ -138,6 +154,18 @@ describe("ClassFinder", () => {
     it("find the path for class Random Plan", () => {
       const Class = ClassFinder.classFor('Random', 'Life')
       assert.strictEqual(Class.name, 'RandomLife')
+    })
+    it("find the path for class More Plan", () => {
+      const Class = ClassFinder.classFor('Namespace:More', 'Namespace')
+      assert.strictEqual(Class.name, 'More')
+    })
+    it("find the path for class Nested Plan", () => {
+      const Class = ClassFinder.classFor('Namespace:Nested', 'Namespace')
+      assert.strictEqual(Class.name, 'Nested')
+    })
+    it("find the path for class Random Plan", () => {
+      const Class = ClassFinder.classFor('Namespace:Random', 'Namespace')
+      assert.strictEqual(Class.name, 'RandomNamespace')
     })
   })
 })

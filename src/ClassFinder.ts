@@ -55,13 +55,19 @@ export class ClassFinder {
   static classForRequire(name: string, classType: string) {
     let Controller
     const classLocation = this.classLocation(classType)
+    const pathSubstitutedNamespace = name.replace(':', '/')
     try {
-      Controller = require(Path.join(classLocation, name + classType))
+      Controller = require(Path.join(classLocation, pathSubstitutedNamespace + classType))
     } catch (error) {
       if (!error.message.match(/Cannot find module/)) throw error
-      Controller = require(Path.join(classLocation, name))
+      Controller = require(Path.join(classLocation, pathSubstitutedNamespace))
     }
     return Controller
+  }
+
+  static removeNamespace(name: string) {
+    const splitByNamespace = name.split(':')
+    return splitByNamespace[splitByNamespace.length - 1]
   }
 
   static classFor(name: string, classType: string) {
@@ -69,9 +75,10 @@ export class ClassFinder {
     if (this._classFor[name + classType]) return this._classFor[name + classType]
 
     const requiredClass = this.classForRequire(name, classType)
+    const namespacelessName = this.removeNamespace(name)
     if (typeof requiredClass === 'function') return (this._classFor[name + classType] = requiredClass)
-    if (requiredClass[name + classType]) return (this._classFor[name + classType] = requiredClass[name + classType])
-    if (requiredClass[name]) return (this._classFor[name + classType] = requiredClass[name])
+    if (requiredClass[namespacelessName + classType]) return (this._classFor[name + classType] = requiredClass[namespacelessName + classType])
+    if (requiredClass[namespacelessName]) return (this._classFor[name + classType] = requiredClass[namespacelessName])
     if (requiredClass.default) return (this._classFor[name + classType] = requiredClass.default)
   }
 }
