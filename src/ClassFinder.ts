@@ -59,6 +59,7 @@ export class ClassFinder {
     try {
       Controller = require(Path.join(classLocation, pathSubstitutedNamespace + classType))
     } catch (error) {
+      console.warn(error)
       if (!error.message.match(/Cannot find module/)) throw error
       Controller = require(Path.join(classLocation, pathSubstitutedNamespace))
     }
