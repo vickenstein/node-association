@@ -4,6 +4,7 @@ const inflection = require("inflection");
 const ExtendableError = require("es6-error");
 const Path = require("path");
 const fs = require("fs");
+const HIERACHY_DIVIDER = '::';
 let localPath = Path.join(__dirname, '../..');
 if (Path.basename(localPath) === 'node_modules') {
     localPath = Path.join(localPath, '..');
@@ -21,6 +22,9 @@ class ClassFinder {
     }
     static get searchPath() {
         return ['', 'dist', 'lib', 'src'];
+    }
+    static get hierarchyDivider() {
+        return HIERACHY_DIVIDER;
     }
     static classLocation(classType) {
         if (!this._classLocation)
@@ -48,7 +52,7 @@ class ClassFinder {
     static classForRequire(name, classType) {
         let Controller;
         const classLocation = this.classLocation(classType);
-        const pathSubstitutedNamespace = name.replace(':', '/');
+        const pathSubstitutedNamespace = name.replace(this.hierarchyDivider, '/');
         try {
             Controller = require(Path.join(classLocation, pathSubstitutedNamespace + classType));
         }
@@ -61,7 +65,7 @@ class ClassFinder {
         return Controller;
     }
     static removeNamespace(name) {
-        const splitByNamespace = name.split(':');
+        const splitByNamespace = name.split(this.hierarchyDivider);
         return splitByNamespace[splitByNamespace.length - 1];
     }
     static classFor(name, classType) {

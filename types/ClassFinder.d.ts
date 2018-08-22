@@ -7,6 +7,7 @@ export declare class ClassFinder {
     static _classFor: any;
     static readonly localPath: string;
     static readonly searchPath: string[];
+    static readonly hierarchyDivider: string;
     static classLocation(classType: string): any;
     static resolveClassLocation(classType: string): never;
     static classForRequire(name: string, classType: string): any;

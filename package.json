@@ -1,6 +1,6 @@
 {
   "name": "node-association",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "a frame work of popular npm modules for building mongo express based application",
   "main": "dist/index.js",
   "types": "types/index.d.ts",

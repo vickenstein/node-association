@@ -86,15 +86,15 @@ describe("ClassFinder", () => {
       assert.isOk(Class)
     })
     it("find the path for class More Plan", () => {
-      const Class = ClassFinder.classForRequire('Namespace:More', 'Namespace')
+      const Class = ClassFinder.classForRequire('Namespace::More', 'Namespace')
       assert.isOk(Class)
     })
     it("find the path for class Nested Plan", () => {
-      const Class = ClassFinder.classForRequire('Namespace:Nested', 'Namespace')
+      const Class = ClassFinder.classForRequire('Namespace::Nested', 'Namespace')
       assert.isOk(Class)
     })
     it("find the path for class Random Plan", () => {
-      const Class = ClassFinder.classForRequire('Namespace:Random', 'Namespace')
+      const Class = ClassFinder.classForRequire('Namespace::Random', 'Namespace')
       assert.isOk(Class)
     })
     it("find the path for class Random Plan", () => {
@@ -156,15 +156,15 @@ describe("ClassFinder", () => {
       assert.strictEqual(Class.name, 'RandomLife')
     })
     it("find the path for class More Plan", () => {
-      const Class = ClassFinder.classFor('Namespace:More', 'Namespace')
+      const Class = ClassFinder.classFor('Namespace::More', 'Namespace')
       assert.strictEqual(Class.name, 'More')
     })
     it("find the path for class Nested Plan", () => {
-      const Class = ClassFinder.classFor('Namespace:Nested', 'Namespace')
+      const Class = ClassFinder.classFor('Namespace::Nested', 'Namespace')
       assert.strictEqual(Class.name, 'Nested')
     })
     it("find the path for class Random Plan", () => {
-      const Class = ClassFinder.classFor('Namespace:Random', 'Namespace')
+      const Class = ClassFinder.classFor('Namespace::Random', 'Namespace')
       assert.strictEqual(Class.name, 'RandomNamespace')
     })
   })

@@ -3,6 +3,8 @@ import * as ExtendableError from 'es6-error'
 import * as Path from 'path'
 import * as fs from 'fs'
 
+const HIERACHY_DIVIDER = '::'
+
 let localPath = Path.join(__dirname, '../..')
 if (Path.basename(localPath) === 'node_modules') {
   localPath = Path.join(localPath, '..')
@@ -26,6 +28,10 @@ export class ClassFinder {
 
   static get searchPath() {
     return ['', 'dist', 'lib', 'src']
+  }
+
+  static get hierarchyDivider() {
+    return HIERACHY_DIVIDER
   }
 
   static classLocation(classType: string) {
@@ -55,7 +61,7 @@ export class ClassFinder {
   static classForRequire(name: string, classType: string) {
     let Controller
     const classLocation = this.classLocation(classType)
-    const pathSubstitutedNamespace = name.replace(':', '/')
+    const pathSubstitutedNamespace = name.replace(this.hierarchyDivider, '/')
     try {
       Controller = require(Path.join(classLocation, pathSubstitutedNamespace + classType))
     } catch (error) {
@@ -67,7 +73,7 @@ export class ClassFinder {
   }
 
   static removeNamespace(name: string) {
-    const splitByNamespace = name.split(':')
+    const splitByNamespace = name.split(this.hierarchyDivider)
     return splitByNamespace[splitByNamespace.length - 1]
   }
 
