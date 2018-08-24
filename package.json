@@ -1,6 +1,6 @@
 {
   "name": "node-association",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "a frame work of popular npm modules for building mongo express based application",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
@@ -21,7 +21,9 @@
   "devDependencies": {
     "@types/es6-error": "^4.0.2",
     "@types/inflection": "^1.5.28",
+    "@types/lodash": "^4.14.116",
     "@types/node": "^10.7.1",
+    "@types/object.getownpropertydescriptors": "^2.0.0",
     "chai": "^4.1.2",
     "gulp": "^4.0.0",
     "gulp-clean": "^0.4.0",
@@ -34,6 +36,8 @@
   },
   "dependencies": {
     "es6-error": "^4.1.1",
-    "inflection": "^1.12.0"
+    "inflection": "^1.12.0",
+    "lodash": "^4.17.10",
+    "object.getownpropertydescriptors": "^2.0.3"
   }
 }

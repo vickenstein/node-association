@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Presenter {
+const Mixer_1 = require("./Mixer");
+class Presenter extends Mixer_1.Mixer {
     execute(callback) { }
     then(onFulfilled, onRejected) {
         const execute = this.execute;

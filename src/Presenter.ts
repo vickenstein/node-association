@@ -1,4 +1,6 @@
-export class Presenter {
+import { Mixer } from './Mixer'
+
+export class Presenter extends Mixer {
 
   execute(callback?: any) {}
 
