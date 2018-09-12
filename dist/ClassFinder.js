@@ -6,6 +6,11 @@ const Path = require("path");
 const fs = require("fs");
 const HIERACHY_DIVIDER = '::';
 let localPath = Path.join(__dirname, '../..');
+let parentPath = Path.join(localPath, '../..');
+while (Path.basename(parentPath) === 'node_modules') {
+    localPath = parentPath;
+    parentPath = Path.join(localPath, '../..');
+}
 if (Path.basename(localPath) === 'node_modules') {
     localPath = Path.join(localPath, '..');
 }

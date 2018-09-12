@@ -51,19 +51,19 @@ module.exports = class AService {
 
 }
 ```
-```
+```javascript
 export default class AService {
 
 }
 ```
 It is also possible to export the class as an named property e.g.
-```
+```javascript
 class AService {}
 module.exports = {
   AService
 }
 ```
-```
+```javascript
 class AService {}
 export AService
 ```
